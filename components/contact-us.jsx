@@ -1,0 +1,224 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
+
+export default function ContactUsSection() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: "", msg: "" }); // type: "success" | "error" | ""
+
+  const isValid = useMemo(() => {
+    const nameOk = form.name.trim().length > 0;
+    const emailOk = /^\S+@\S+\.\S+$/.test(form.email.trim());
+    const msgOk = form.message.trim().length > 0;
+    return nameOk && emailOk && msgOk;
+  }, [form]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus({ type: "", msg: "" });
+
+    if (!isValid || loading) return;
+
+    setLoading(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error || "Failed to send");
+
+      setStatus({ type: "success", msg: "Sent! We’ll get back to you soon." });
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      setStatus({
+        type: "error",
+        msg: err?.message || "Something went wrong. Please try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <section
+      id="contact"
+      className="relative py-12 overflow-hidden bg-gradient-to-b from-white via-[#E6EEFF] to-[#F7FAFF]"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* 2-column layout */}
+        <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-0">
+          {/* ----------------------------------------- */}
+          {/* LEFT — FORM */}
+          {/* ----------------------------------------- */}
+          <div className="py-10 pr-10">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              Contact Us
+            </h2>
+
+            <p className="text-sm sm:text-base text-slate-600 mb-10 max-w-md">
+              Feel free to reach out any time.<br />
+              We’ll get back to you as soon as we can.
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name */}
+              <div>
+                <label className="block text-sm font-semibold text-slate-600 mb-1.5">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
+                             focus:border-[#0B1C33] outline-none"
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-semibold text-slate-600 mb-1.5">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
+                             focus:border-[#0B1C33] outline-none"
+                />
+              </div>
+
+              {/* Message */}
+              <div>
+                <label className="block text-sm font-semibold text-slate-600 mb-1.5">
+                  Message
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="Tell us a little about what you need…"
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
+                             resize-none focus:border-[#0B1C33] outline-none"
+                />
+              </div>
+
+              {/* Status message */}
+              {status.msg ? (
+                <p
+                  className={`text-sm ${
+                    status.type === "success"
+                      ? "text-emerald-700"
+                      : "text-red-700"
+                  }`}
+                >
+                  {status.msg}
+                </p>
+              ) : null}
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={!isValid || loading}
+                className="mt-4 inline-flex items-center justify-center px-10 py-3 rounded-full
+                           text-sm font-semibold tracking-[0.18em] uppercase
+                           bg-[#0B1C33] text-white hover:bg-slate-900 transition
+                           disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? "Sending..." : "Send"}
+              </button>
+            </form>
+          </div>
+
+          {/* ----------------------------------------- */}
+          {/* RIGHT — RECTANGLE BAR + NAVY PANEL */}
+          {/* ----------------------------------------- */}
+          <div className="relative flex items-stretch justify-end">
+            {/* Blue rectangle behind the card */}
+            <div
+              className="
+              absolute top-8 right-0
+              h-[85%] w-8
+              bg-cyan-400
+              rounded-l-lg
+            "
+            />
+
+            {/* Navy info panel */}
+            <div
+              className="
+                relative bg-[#0B1C33] text-white px-10 py-12
+                rounded-l-3xl flex flex-col justify-between
+                w-[90%] md:w-[80%] lg:w-[70%]
+                shadow-xl z-10 translate-x-[-1.5rem]
+              "
+            >
+              {/* Accent squares */}
+              <div className="absolute -top-3 left-10 h-6 w-6 bg-cyan-400 rounded-sm" />
+              <div className="absolute -bottom-3 right-10 h-6 w-6 bg-cyan-400 rounded-sm" />
+
+              <div>
+                <h3 className="text-xl font-semibold mb-8">Info</h3>
+
+                <div className="space-y-6 text-sm">
+                  {/* Email */}
+                  <div className="flex items-start gap-3">
+                    <Mail className="h-4 w-4 text-cyan-300" />
+                    <div>
+                      <p className="text-xs uppercase text-slate-400">Email</p>
+                      <p className="font-medium">
+                        knowledgediscoverylab@gmail.com
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-start gap-3">
+                    <Phone className="h-4 w-4 text-cyan-300" />
+                    <div>
+                      <p className="text-xs uppercase text-slate-400">Phone</p>
+                      <p className="font-medium">+66 123 456 789</p>
+                    </div>
+                  </div>
+
+                  {/* Address */}
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-4 w-4 text-cyan-300" />
+                    <div>
+                      <p className="text-xs uppercase text-slate-400">Address</p>
+                      <p className="font-medium">123 Huamak Street, Bangkok</p>
+                    </div>
+                  </div>
+
+                  {/* Hours */}
+                  <div className="flex items-start gap-3">
+                    <Clock className="h-4 w-4 text-cyan-300" />
+                    <div>
+                      <p className="text-xs uppercase text-slate-400">Hours</p>
+                      <p className="font-medium">Mon – Fri, 09:00 – 18:00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social links */}
+              <div className="mt-10 flex gap-6 text-xs text-slate-400">
+                <span>LinkedIn</span>
+                <span>Twitter</span>
+                <span>Facebook</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

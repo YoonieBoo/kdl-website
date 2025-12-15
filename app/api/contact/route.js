@@ -1,0 +1,35 @@
+import { Resend } from "resend";
+
+export async function POST(req) {
+  try {
+    const { name, email, message } = await req.json();
+
+    if (!name || !email || !message) {
+      return Response.json({ error: "Missing fields" }, { status: 400 });
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    if (!process.env.RESEND_API_KEY) {
+      return Response.json({ error: "Missing RESEND_API_KEY" }, { status: 500 });
+    }
+
+    const { error } = await resend.emails.send({
+      from: "Website Contact <onboarding@resend.dev>",
+      to: ["knowledgediscoverylab@gmail.com"],
+      replyTo: email,
+      subject: `New Contact Message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    });
+
+    if (error) {
+      return Response.json({ error: error.message }, { status: 500 });
+    }
+
+    return Response.json({ ok: true }, { status: 200 });
+  } catch (e) {
+    return Response.json(
+      { error: "Invalid request or server error" },
+      { status: 500 }
+    );
+  }
+}
