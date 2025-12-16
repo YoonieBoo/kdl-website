@@ -4,15 +4,31 @@ import { useMemo, useState } from "react";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
 export default function ContactUsSection() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const workshopOptions = [
+    "AI for Digital Content Creators",
+    "AI for Campaign Performance Analysis",
+    "AI for Data-Driven Experience Marketing",
+    "Generative AI for Brand Storytelling",
+    "AI for Social Listening & Trend Discovery",
+    "Personalization at Scale with AI",
+  ];
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    workshop: "",
+    message: "",
+  });
+
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState({ type: "", msg: "" }); // type: "success" | "error" | ""
+  const [status, setStatus] = useState({ type: "", msg: "" }); // "success" | "error" | ""
 
   const isValid = useMemo(() => {
     const nameOk = form.name.trim().length > 0;
     const emailOk = /^\S+@\S+\.\S+$/.test(form.email.trim());
+    const workshopOk = form.workshop.trim().length > 0;
     const msgOk = form.message.trim().length > 0;
-    return nameOk && emailOk && msgOk;
+    return nameOk && emailOk && workshopOk && msgOk;
   }, [form]);
 
   async function handleSubmit(e) {
@@ -33,7 +49,7 @@ export default function ContactUsSection() {
       if (!res.ok) throw new Error(data?.error || "Failed to send");
 
       setStatus({ type: "success", msg: "Sent! We’ll get back to you soon." });
-      setForm({ name: "", email: "", message: "" });
+      setForm({ name: "", email: "", workshop: "", message: "" });
     } catch (err) {
       setStatus({
         type: "error",
@@ -61,7 +77,8 @@ export default function ContactUsSection() {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 mb-10 max-w-md">
-              Feel free to reach out any time.<br />
+              Feel free to reach out any time.
+              <br />
               We’ll get back to you as soon as we can.
             </p>
 
@@ -94,6 +111,37 @@ export default function ContactUsSection() {
                   className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
                              focus:border-[#0B1C33] outline-none"
                 />
+              </div>
+
+              {/* Workshop Dropdown (NEW) */}
+              <div>
+                <label className="block text-sm font-semibold text-slate-600 mb-2">
+                  Workshop Interested In
+                </label>
+
+                <select
+                  value={form.workshop}
+                  onChange={(e) =>
+                    setForm({ ...form, workshop: e.target.value })
+                  }
+                  className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
+                             focus:border-[#0B1C33] outline-none"
+                >
+                  <option value="" disabled>
+                    Select a workshop
+                  </option>
+
+                  {workshopOptions.map((w) => (
+                    <option key={w} value={w} className="text-slate-900">
+                      {w}
+                    </option>
+                  ))}
+                </select>
+
+                {/* tiny helper text (optional) */}
+                <p className="mt-2 text-xs text-slate-500">
+                  This helps us reply with the right info and schedule.
+                </p>
               </div>
 
               {/* Message */}
