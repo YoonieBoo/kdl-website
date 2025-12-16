@@ -14,83 +14,174 @@ import Image from "next/image";
  */
 
 // Detailed copy for each workshop (used in the popup)
+// ✅ Updated: each workshop supports 3h + 6h tabs in the modal
 const workshopDetails = {
   "AI for Software Specification": {
-    overview:
-      "Use AI to support clearer requirements, user stories, and acceptance criteria for product and engineering teams.",
     who: "Product managers, BAs, and engineering leads working on digital products.",
-    format:
-      "6-hour live session split into two parts with hands-on specification labs.",
-    outcomes: [
-      "Turn business goals into AI-assisted user stories and specs.",
-      "Use AI to explore edge cases and scenarios.",
-      "Improve clarity of requirements while keeping ownership with humans.",
-    ],
+    durations: {
+      "3": {
+        overview:
+          "A fast-paced introduction to using AI for clearer requirements and user stories.",
+        format:
+          "3-hour live session with guided examples and lightweight exercises.",
+        outcomes: [
+          "Understand how AI supports requirement clarity.",
+          "Draft better user stories faster.",
+          "Spot common requirement pitfalls early.",
+        ],
+      },
+      "6": {
+        overview:
+          "Use AI to support clearer requirements, user stories, and acceptance criteria for product and engineering teams.",
+        format:
+          "6-hour live session split into two parts with hands-on specification labs.",
+        outcomes: [
+          "Turn business goals into AI-assisted user stories and specs.",
+          "Use AI to explore edge cases and scenarios.",
+          "Improve clarity of requirements while keeping ownership with humans.",
+        ],
+      },
+    },
   },
 
   "Lean-to Digital Transformation": {
-    overview:
-      "Connect lean principles with digital tools and AI to design practical transformation roadmaps.",
     who: "Transformation leaders, operations managers, and digital leads.",
-    format:
-      "6-hour live workshop combining lean canvases, journey maps, and digital use cases.",
-    outcomes: [
-      "Link lean pain points to digital and AI opportunities.",
-      "Prioritize initiatives based on impact and readiness.",
-      "Create a simple transformation storyline for stakeholders.",
-    ],
+    durations: {
+      "3": {
+        overview:
+          "A compact session to connect lean thinking with AI and digital initiatives.",
+        format:
+          "3-hour live workshop using simple canvases and quick prioritization exercises.",
+        outcomes: [
+          "Map lean pain points to digital opportunities.",
+          "Pick quick wins vs. strategic initiatives.",
+          "Align stakeholders with a clear storyline.",
+        ],
+      },
+      "6": {
+        overview:
+          "Connect lean principles with digital tools and AI to design practical transformation roadmaps.",
+        format:
+          "6-hour live workshop combining lean canvases, journey maps, and digital use cases.",
+        outcomes: [
+          "Link lean pain points to digital and AI opportunities.",
+          "Prioritize initiatives based on impact and readiness.",
+          "Create a simple transformation storyline for stakeholders.",
+        ],
+      },
+    },
   },
 
   "AI workflow for Business Process Optimization": {
-    overview:
-      "Map current processes, identify bottlenecks, and design AI-assisted workflows that fit how teams really work.",
     who: "Operations, PMO, transformation, and process owners.",
-    format:
-      "6-hour live session using swimlanes and real workflow examples.",
-    outcomes: [
-      "Document current-state and target-state workflow clearly.",
-      "Identify high-impact automation opportunities.",
-      "Define roles, controls, and hand-offs in AI-enabled processes.",
-    ],
+    durations: {
+      "3": {
+        overview:
+          "A focused session to spot bottlenecks and redesign workflows with AI in mind.",
+        format:
+          "3-hour live session with current-state mapping and a target workflow draft.",
+        outcomes: [
+          "Identify bottlenecks in current processes.",
+          "Draft an AI-assisted target workflow.",
+          "Clarify roles and hand-offs quickly.",
+        ],
+      },
+      "6": {
+        overview:
+          "Map current processes, identify bottlenecks, and design AI-assisted workflows that fit how teams really work.",
+        format:
+          "6-hour live session using swimlanes and real workflow examples.",
+        outcomes: [
+          "Document current-state and target-state workflow clearly.",
+          "Identify high-impact automation opportunities.",
+          "Define roles, controls, and hand-offs in AI-enabled processes.",
+        ],
+      },
+    },
   },
 
   "AI for Digital Content Creators": {
-    overview:
-      "Give marketing and brand teams a practical playbook for using AI tools to ideate, draft, and repurpose content across channels.",
     who: "Marketing, brand, and CX teams producing campaigns and always-on content.",
-    format:
-      "3-hour live session using real examples from blogs, social media, and campaign assets.",
-    outcomes: [
-      "Map your current content workflow and identify AI quick wins.",
-      "Use prompt patterns to draft, refine, and repurpose content faster.",
-      "Set guardrails for tone, messaging, and approvals when using AI.",
-    ],
+    durations: {
+      "3": {
+        overview:
+          "Give marketing and brand teams a practical playbook for using AI tools to ideate, draft, and repurpose content across channels.",
+        format:
+          "3-hour live session using real examples from blogs, social media, and campaign assets.",
+        outcomes: [
+          "Map your current content workflow and identify AI quick wins.",
+          "Use prompt patterns to draft, refine, and repurpose content faster.",
+          "Set guardrails for tone, messaging, and approvals when using AI.",
+        ],
+      },
+      "6": {
+        overview:
+          "A deeper, hands-on version with more practice rounds, review loops, and reusable templates for your team.",
+        format:
+          "6-hour live workshop with exercises across multiple content formats + feedback rounds.",
+        outcomes: [
+          "Build a repeatable prompt kit for your brand voice.",
+          "Create a repurposing workflow across channels.",
+          "Set a team approval process with AI guardrails.",
+        ],
+      },
+    },
   },
 
   "AI for Data-Driven experience marketing": {
-    overview:
-      "Use AI to connect customer data, experiments, and feedback to design better end-to-end experiences.",
     who: "CX, CRM, and lifecycle marketing teams responsible for journeys.",
-    format:
-      "3-hour live session combining journey maps and AI-assisted analysis.",
-    outcomes: [
-      "Translate customer data into clear journey insights.",
-      "Prioritize improvements using scenario exploration.",
-      "Create experience briefs that connect insights to action.",
-    ],
+    durations: {
+      "3": {
+        overview:
+          "Use AI to connect customer data, experiments, and feedback to design better end-to-end experiences.",
+        format:
+          "3-hour live session combining journey maps and AI-assisted analysis.",
+        outcomes: [
+          "Translate customer data into clear journey insights.",
+          "Prioritize improvements using scenario exploration.",
+          "Create experience briefs that connect insights to action.",
+        ],
+      },
+      "6": {
+        overview:
+          "A deeper workshop with more journey scenarios, experimentation planning, and prioritization frameworks.",
+        format:
+          "6-hour live workshop including analysis + planning + implementation roadmap.",
+        outcomes: [
+          "Build a journey measurement plan and experiment ideas.",
+          "Create prioritized experience improvements by segment.",
+          "Turn insights into a practical execution roadmap.",
+        ],
+      },
+    },
   },
 
   "AI in motion": {
-    overview:
-      "A fast-paced session showing how AI can be applied live across workflows, with practical examples and hands-on demos.",
     who: "Teams who want to see real AI use cases end-to-end, quickly.",
-    format:
-      "3-hour live session with guided demos, exercises, and take-home templates.",
-    outcomes: [
-      "See AI workflows applied from start to finish.",
-      "Learn prompt patterns you can reuse immediately.",
-      "Leave with a practical starter toolkit for your team.",
-    ],
+    durations: {
+      "3": {
+        overview:
+          "A fast-paced session showing how AI can be applied live across workflows, with practical examples and hands-on demos.",
+        format:
+          "3-hour live session with guided demos, exercises, and take-home templates.",
+        outcomes: [
+          "See AI workflows applied from start to finish.",
+          "Learn prompt patterns you can reuse immediately.",
+          "Leave with a practical starter toolkit for your team.",
+        ],
+      },
+      "6": {
+        overview:
+          "A longer session with more demos + team exercises across multiple workflows end-to-end.",
+        format:
+          "6-hour live workshop with extended hands-on practice and reusable workflow templates.",
+        outcomes: [
+          "Practice AI workflows in multiple real scenarios.",
+          "Build templates your team can reuse.",
+          "Leave with a stronger starter toolkit + next steps.",
+        ],
+      },
+    },
   },
 };
 
@@ -158,7 +249,6 @@ export default function WorkshopCategories() {
       alt: "AI for data-driven experience marketing workshop",
     },
     "AI in motion": {
-      // ✅ add your own image later if you want; this can be any existing image you already have
       src: "/images/workshops/ai-in-motion.png",
       alt: "AI in motion workshop",
     },
@@ -173,12 +263,19 @@ export default function WorkshopCategories() {
   const [activeFilter, setActiveFilter] = useState("All workshops");
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
 
+  // ✅ NEW: controls the 3h/6h toggle inside the popup
+  const [selectedDuration, setSelectedDuration] = useState("6");
+
   const visibleWorkshops =
     activeFilter === "All workshops"
       ? workshops
       : workshops.filter((w) => w.track === activeFilter);
 
-  const handleCardClick = (workshop) => setSelectedWorkshop(workshop);
+  const handleCardClick = (workshop) => {
+    setSelectedWorkshop(workshop);
+    setSelectedDuration(workshop.durationLabel.startsWith("3") ? "3" : "6");
+  };
+
   const handleClose = () => setSelectedWorkshop(null);
 
   return (
@@ -258,12 +355,6 @@ export default function WorkshopCategories() {
                       <p className="mt-2 text-[12px] text-slate-600">
                         {workshop.subtitle}
                       </p>
-
-                      <div className="mt-3 flex flex-wrap items-center gap-2 text-[10px] text-slate-700">
-                        <span className="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 font-medium text-slate-700 border border-slate-200">
-                          {workshop.durationLabel}
-                        </span>
-                      </div>
                     </div>
                   </article>
                 );
@@ -287,7 +378,15 @@ export default function WorkshopCategories() {
             <div className="relative h-48 w-full">
               {(() => {
                 const img = workshopImages[selectedWorkshop.title] || workshopImages.default;
-                return <Image src={img.src} alt={img.alt} fill sizes="768px" className="object-cover" />;
+                return (
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="768px"
+                    className="object-cover"
+                  />
+                );
               })()}
 
               <button
@@ -308,22 +407,34 @@ export default function WorkshopCategories() {
                 {selectedWorkshop.title}
               </h3>
 
-              <p className="text-sm text-slate-600 mb-3 leading-relaxed max-w-2xl">
+              <p className="text-sm text-slate-600 mb-5 leading-relaxed max-w-2xl">
                 {selectedWorkshop.subtitle}
               </p>
 
-              <div className="flex flex-wrap gap-2 text-[11px] sm:text-xs mb-9">
-                <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-800 border border-slate-200">
-                  {selectedWorkshop.durationLabel}
-                </span>
-                <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1 font-medium text-sky-800 border border-sky-100">
-                  Live session
-                </span>
+              {/* ✅ NEW: 3h / 6h Toggle (replaces the old duration chip) */}
+              <div className="flex items-center gap-2 mb-8">
+                {["3", "6"].map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() => setSelectedDuration(d)}
+                    className={
+                      "px-4 py-1.5 rounded-full text-xs font-semibold border transition " +
+                      (selectedDuration === d
+                        ? "bg-[#0B1C33] text-white border-[#0B1C33]"
+                        : "bg-white text-slate-700 border-slate-300 hover:bg-slate-100")
+                    }
+                  >
+                    {d} hours
+                  </button>
+                ))}
+
               </div>
 
               {(() => {
-                const detail = workshopDetails[selectedWorkshop.title];
-                if (!detail) return null;
+                const base = workshopDetails[selectedWorkshop.title];
+                const detail = base?.durations?.[selectedDuration];
+                if (!base || !detail) return null;
 
                 return (
                   <div className="space-y-6 max-w-2xl">
@@ -341,7 +452,7 @@ export default function WorkshopCategories() {
                         Who it&apos;s for
                       </h4>
                       <p className="text-sm text-slate-700 leading-relaxed">
-                        {detail.who}
+                        {base.who}
                       </p>
                     </div>
 
