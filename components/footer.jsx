@@ -12,9 +12,9 @@ export default function Footer() {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-12 pb-8">
         {/* TOP ROW */}
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-2 items-start">
           
-          {/* Brand / summary */}
+          {/* LEFT — Brand / summary */}
           <div className="space-y-4">
             <div>
               <p className="text-xs font-semibold tracking-[0.22em] uppercase text-sky-300">
@@ -24,75 +24,65 @@ export default function Footer() {
                 AI-driven corporate training
               </h3>
             </div>
-            <p className="text-sm text-slate-300 leading-relaxed">
+
+            <p className="text-sm text-slate-300 leading-relaxed max-w-md">
               Empowering teams with practical AI, automation, and digital
               innovation training.
             </p>
           </div>
 
-          {/* Sections column */}
-          <div>
+          {/* RIGHT — Sections (aligned to right corner) */}
+          <div className="md:text-right">
             <h4 className="text-sm font-semibold text-white mb-3">
               Sections
             </h4>
+
             <ul className="space-y-2 text-sm text-slate-300">
               <li>
-                <Link href="#program-models" className="hover:text-sky-300">
+                <Link
+                  href="#program-models"
+                  className="hover:text-sky-300 transition-colors"
+                >
                   Program models
                 </Link>
               </li>
               <li>
-                <Link href="#workshop-categories" className="hover:text-sky-300">
+                <Link
+                  href="#workshop-categories"
+                  className="hover:text-sky-300 transition-colors"
+                >
                   Our workshops
                 </Link>
               </li>
               <li>
-                <Link href="#who-we-are" className="hover:text-sky-300">
+                <Link
+                  href="#who-we-are"
+                  className="hover:text-sky-300 transition-colors"
+                >
                   About the lab
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:text-sky-300">
+                <Link
+                  href="#contact"
+                  className="hover:text-sky-300 transition-colors"
+                >
                   Contact us
                 </Link>
               </li>
             </ul>
           </div>
-
-          {/* Resources column */}
-          <div>
-            <h4 className="text-sm font-semibold text-white mb-3">
-              Resources
-            </h4>
-            <ul className="space-y-2 text-sm text-slate-300">
-              <li>
-                <button className="hover:text-sky-300 cursor-pointer">
-                  Sample workshop outlines
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-sky-300 cursor-pointer">
-                  Measurement & ROI framework
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-sky-300 cursor-pointer">
-                  FAQs for corporate teams
-                </button>
-              </li>
-            </ul>
-          </div>
-
         </div>
 
         {/* DIVIDER */}
         <div className="mt-10 border-t border-slate-800/80 pt-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© 2025 Knowledge Discovery Lab. All rights reserved.</p>
+
           <div className="flex gap-4">
-            <button className="hover:text-sky-300 cursor-pointer">
+            <button className="hover:text-sky-300 transition-colors">
               Privacy Policy
             </button>
-            <button className="hover:text-sky-300 cursor-pointer">
+            <button className="hover:text-sky-300 transition-colors">
               Terms of Use
             </button>
           </div>
