@@ -7,7 +7,7 @@ const testimonials = [
   {
     id: 1,
     quote:
-      "It’s a super product with a professional support team. I can’t wait to see the future features.",
+      "เวิร์กช็อปนี้ช่วยให้ทีมของเรานำ AI ไปใช้กับงานจริงได้อย่างมีประสิทธิภาพ และเห็นผลชัดเจนในกระบวนการทำงาน",
     name: "P Maii",
     role: "CEO",
     avatar: "/images/avatars/User1.jpg",
