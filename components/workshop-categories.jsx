@@ -3,80 +3,18 @@
 import { useState } from "react";
 import Image from "next/image";
 
+/**
+ * ✅ Only the 6 workshops from your screenshot:
+ * - AI for Software Specification
+ * - Lean-to Digital Transformation
+ * - AI workflow for Business Process Optimization
+ * - AI for Digital Content Creators
+ * - AI for Data-Driven experience marketing
+ * - AI in motion
+ */
+
 // Detailed copy for each workshop (used in the popup)
 const workshopDetails = {
-  "AI for Digital Content Creators": {
-    overview:
-      "Give marketing and brand teams a practical playbook for using AI tools to ideate, draft, and repurpose digital content across channels.",
-    who: "Marketing, brand, and CX teams who produce campaigns, social posts, and always-on content.",
-    format:
-      "3-hour live session using real examples from blogs, social media, and campaign assets.",
-    outcomes: [
-      "Map your current content workflow and identify AI quick wins.",
-      "Use prompt patterns to draft, refine, and repurpose content faster.",
-      "Set guardrails for tone, messaging, and approvals when using AI.",
-    ],
-  },
-  "AI for Campaign Performance Analysis": {
-    overview:
-      "Use AI to turn campaign data into clear stories and recommendations that stakeholders can act on.",
-    who: "Performance marketers, growth teams, and analysts who report on campaign results.",
-    format:
-      "3-hour live session using sample dashboards, spreadsheets, and campaign data.",
-    outcomes: [
-      "Summarize campaign performance with AI-generated narratives.",
-      "Spot key drivers and anomalies using prompt recipes.",
-      "Produce stakeholder-ready summaries in minutes, not days.",
-    ],
-  },
-  "AI for Data-Driven Experience Marketing": {
-    overview:
-      "Connect journey data, experiments, and customer feedback to design better end-to-end experiences.",
-    who: "CX, CRM, and lifecycle marketing teams responsible for customer journeys.",
-    format:
-      "3-hour live session combining journey maps, experiments, and AI-assisted analysis.",
-    outcomes: [
-      "Translate customer data into clear journey insights.",
-      "Prioritize improvements using AI-based scenario exploration.",
-      "Create experience briefs that connect data to action.",
-    ],
-  },
-  "Generative AI for Brand Storytelling": {
-    overview:
-      "Explore how generative AI can support brand-safe storytelling without diluting your core narrative.",
-    who: "Brand, creative, and content leaders responsible for narrative and campaigns.",
-    format:
-      "3-hour live session with story frameworks, prompt examples, and creative exercises.",
-    outcomes: [
-      "Design AI prompt frameworks that respect brand voice.",
-      "Generate concept directions for campaigns and narratives.",
-      "Build a simple review flow to keep AI outputs on-brand.",
-    ],
-  },
-  "AI for Social Listening & Trend Discovery": {
-    overview:
-      "Use AI to synthesize social data, reviews, and conversation snippets into clear trend signals.",
-    who: "Marketing, CX, insights, and social media teams monitoring brand and category conversations.",
-    format:
-      "3-hour live session using anonymized social data and listening outputs.",
-    outcomes: [
-      "Cluster social conversations into themes with AI.",
-      "Surface emerging topics and risks from noisy data.",
-      "Turn findings into actionable briefs for marketing and CX.",
-    ],
-  },
-  "Personalization at Scale with AI": {
-    overview:
-      "Learn how AI can support segment-level and one-to-few personalization without over-engineering.",
-    who: "Growth, CRM, and product marketing teams driving targeted campaigns and journeys.",
-    format:
-      "3-hour live session using scenarios across email, in-app, and paid media.",
-    outcomes: [
-      "Define practical personalization tiers for your context.",
-      "Use AI to draft and test tailored messages by segment.",
-      "Create a roadmap for scaling personalization safely.",
-    ],
-  },
   "AI for Software Specification": {
     overview:
       "Use AI to support clearer requirements, user stories, and acceptance criteria for product and engineering teams.",
@@ -85,47 +23,12 @@ const workshopDetails = {
       "6-hour live session split into two parts with hands-on specification labs.",
     outcomes: [
       "Turn business goals into AI-assisted user stories and specs.",
-      "Use AI as a sounding board for edge cases and scenarios.",
+      "Use AI to explore edge cases and scenarios.",
       "Improve clarity of requirements while keeping ownership with humans.",
     ],
   },
-  "AI Workflow for Business Process Optimization": {
-    overview:
-      "Map current processes, identify bottlenecks, and design AI-assisted workflows that actually fit how teams work.",
-    who: "Operations, PMO, transformation, and process owners.",
-    format:
-      "6-hour live session using swimlanes, RACI views, and example automations.",
-    outcomes: [
-      "Document a target-state workflow with AI assist.",
-      "Identify high-impact automation opportunities.",
-      "Define roles, controls, and hand-offs in AI-enabled processes.",
-    ],
-  },
-  "Intelligent Document Processing with AI": {
-    overview:
-      "Explore how AI can classify, extract, and route information from documents, forms, and unstructured content.",
-    who: "Operations, shared services, compliance, and back-office teams.",
-    format:
-      "6-hour live session with document samples and pipeline design exercises.",
-    outcomes: [
-      "Identify document types suitable for AI-powered processing.",
-      "Design a basic intake and review flow for critical documents.",
-      "Define quality checks and exception handling for AI outputs.",
-    ],
-  },
-  "AI for Operations & Capacity Planning": {
-    overview:
-      "Use AI to stress-test assumptions, scenario-plan, and communicate operational trade-offs.",
-    who: "Operations leaders, planners, and team managers.",
-    format:
-      "6-hour live session built around capacity models and real-world scenarios.",
-    outcomes: [
-      "Create prompt templates for scenario exploration.",
-      "Translate operational data into clear narratives for leaders.",
-      "Highlight risks and options in a way stakeholders can act on.",
-    ],
-  },
-  "Lean-to-Digital Transformation": {
+
+  "Lean-to Digital Transformation": {
     overview:
       "Connect lean principles with digital tools and AI to design practical transformation roadmaps.",
     who: "Transformation leaders, operations managers, and digital leads.",
@@ -137,135 +40,152 @@ const workshopDetails = {
       "Create a simple transformation storyline for stakeholders.",
     ],
   },
+
+  "AI workflow for Business Process Optimization": {
+    overview:
+      "Map current processes, identify bottlenecks, and design AI-assisted workflows that fit how teams really work.",
+    who: "Operations, PMO, transformation, and process owners.",
+    format:
+      "6-hour live session using swimlanes and real workflow examples.",
+    outcomes: [
+      "Document current-state and target-state workflow clearly.",
+      "Identify high-impact automation opportunities.",
+      "Define roles, controls, and hand-offs in AI-enabled processes.",
+    ],
+  },
+
+  "AI for Digital Content Creators": {
+    overview:
+      "Give marketing and brand teams a practical playbook for using AI tools to ideate, draft, and repurpose content across channels.",
+    who: "Marketing, brand, and CX teams producing campaigns and always-on content.",
+    format:
+      "3-hour live session using real examples from blogs, social media, and campaign assets.",
+    outcomes: [
+      "Map your current content workflow and identify AI quick wins.",
+      "Use prompt patterns to draft, refine, and repurpose content faster.",
+      "Set guardrails for tone, messaging, and approvals when using AI.",
+    ],
+  },
+
+  "AI for Data-Driven experience marketing": {
+    overview:
+      "Use AI to connect customer data, experiments, and feedback to design better end-to-end experiences.",
+    who: "CX, CRM, and lifecycle marketing teams responsible for journeys.",
+    format:
+      "3-hour live session combining journey maps and AI-assisted analysis.",
+    outcomes: [
+      "Translate customer data into clear journey insights.",
+      "Prioritize improvements using scenario exploration.",
+      "Create experience briefs that connect insights to action.",
+    ],
+  },
+
+  "AI in motion": {
+    overview:
+      "A fast-paced session showing how AI can be applied live across workflows, with practical examples and hands-on demos.",
+    who: "Teams who want to see real AI use cases end-to-end, quickly.",
+    format:
+      "3-hour live session with guided demos, exercises, and take-home templates.",
+    outcomes: [
+      "See AI workflows applied from start to finish.",
+      "Learn prompt patterns you can reuse immediately.",
+      "Leave with a practical starter toolkit for your team.",
+    ],
+  },
 };
 
+// ✅ Only 6 workshops
 export default function WorkshopCategories() {
-  const groups = [
+  const workshops = [
     {
-      title: "Marketing & Experience",
-      subtitle: "Hands-on AI skills for marketing, brand, and CX teams.",
-      workshops: [
-        "AI for Digital Content Creators",
-        "AI for Campaign Performance Analysis",
-        "AI for Data-Driven Experience Marketing",
-        "Generative AI for Brand Storytelling",
-        "AI for Social Listening & Trend Discovery",
-        "Personalization at Scale with AI",
-      ],
+      title: "AI for Software Specification",
+      track: "Process & Workflow",
+      subtitle: "Applied AI for product and IT requirement clarity.",
+      durationLabel: "6 hours · Intermediate",
     },
     {
-      title: "Process & Workflow",
-      subtitle: "Applied AI for product, operations, and IT workflow automation.",
-      workshops: [
-        "AI for Software Specification",
-        "AI Workflow for Business Process Optimization",
-        "Intelligent Document Processing with AI",
-        "AI for Operations & Capacity Planning",
-        "Lean-to-Digital Transformation",
-      ],
+      title: "Lean-to Digital Transformation",
+      track: "Process & Workflow",
+      subtitle: "Practical roadmap design using lean + AI thinking.",
+      durationLabel: "6 hours · Intermediate",
+    },
+    {
+      title: "AI workflow for Business Process Optimization",
+      track: "Process & Workflow",
+      subtitle: "Design workflows that reduce bottlenecks and rework.",
+      durationLabel: "6 hours · Intermediate",
+    },
+    {
+      title: "AI for Digital Content Creators",
+      track: "Marketing & Experience",
+      subtitle: "Hands-on AI skills for content and campaign workflows.",
+      durationLabel: "3 hours · Beginner–Intermediate",
+    },
+    {
+      title: "AI for Data-Driven experience marketing",
+      track: "Marketing & Experience",
+      subtitle: "Turn customer journey data into practical improvements.",
+      durationLabel: "3 hours · Beginner–Intermediate",
+    },
+    {
+      title: "AI in motion",
+      track: "Marketing & Experience",
+      subtitle: "Live AI demos across real workflows and templates.",
+      durationLabel: "3 hours · Beginner–Intermediate",
     },
   ];
 
-  // Shared duration labels per track
-  const durationByTrack = {
-    "Marketing & Experience": "3 hours · Beginner–Intermediate",
-    "Process & Workflow": "6 hours · Intermediate",
-  };
-
-  // title -> image mapping
+  // ✅ Images: map only the 6 titles
   const workshopImages = {
-    // Marketing & Experience
-    "AI for Digital Content Creators": {
-      src: "/images/workshops/digital-content.png",
-      alt: "AI tools supporting digital content creation",
-    },
-    "AI for Campaign Performance Analysis": {
-      src: "/images/workshops/campaign-performance.png",
-      alt: "Charts showing AI-driven campaign performance analysis",
-    },
-    "AI for Data-Driven Experience Marketing": {
-      src: "/images/workshops/data-driven-marketing.png",
-      alt: "Dashboards and graphs for experience marketing analytics",
-    },
-    "Generative AI for Brand Storytelling": {
-      src: "/images/workshops/brand-storytelling.png",
-      alt: "Creative visuals representing generative AI brand storytelling",
-    },
-    "AI for Social Listening & Trend Discovery": {
-      src: "/images/workshops/social-listening.png",
-      alt: "Social media feeds and trend graphs powered by AI",
-    },
-    "Personalization at Scale with AI": {
-      src: "/images/workshops/personalization-at-scale.png",
-      alt: "Customer journeys visualizing AI-powered personalization",
-    },
-
-    // Process & Workflow
     "AI for Software Specification": {
       src: "/images/workshops/software-specification.png",
-      alt: "Product and engineering teams collaborating on software specs",
+      alt: "AI for software specification workshop",
     },
-    "AI Workflow for Business Process Optimization": {
-      src: "/images/workshops/workflow-optimization.jpg",
-      alt: "Workflow diagram optimized with AI recommendations",
-    },
-    "Intelligent Document Processing with AI": {
-      src: "/images/workshops/intelligent-doc-processing.png",
-      alt: "Documents being processed and classified by AI",
-    },
-    "AI for Operations & Capacity Planning": {
-      src: "/images/workshops/operations-capacity.png",
-      alt: "Operations dashboards and capacity planning charts",
-    },
-    "Lean-to-Digital Transformation": {
+    "Lean-to Digital Transformation": {
       src: "/images/workshops/lean-digital-transformation.png",
-      alt: "Team planning a lean digital transformation roadmap",
+      alt: "Lean-to digital transformation workshop",
     },
-
-    // Fallback
+    "AI workflow for Business Process Optimization": {
+      src: "/images/workshops/workflow-optimization.jpg",
+      alt: "AI workflow for business process optimization workshop",
+    },
+    "AI for Digital Content Creators": {
+      src: "/images/workshops/digital-content.png",
+      alt: "AI for digital content creators workshop",
+    },
+    "AI for Data-Driven experience marketing": {
+      src: "/images/workshops/data-driven-marketing.png",
+      alt: "AI for data-driven experience marketing workshop",
+    },
+    "AI in motion": {
+      // ✅ add your own image later if you want; this can be any existing image you already have
+      src: "/images/workshops/ai-in-motion.png",
+      alt: "AI in motion workshop",
+    },
     default: {
       src: "/images/workshops/default.jpg",
-      alt: "Abstract AI and data visualization",
+      alt: "Workshop image",
     },
   };
 
-  // Flatten list for grid
-  const allWorkshops = groups.flatMap((group) =>
-    group.workshops.map((title) => ({
-      title,
-      track: group.title,
-      subtitle: group.subtitle,
-      durationLabel: durationByTrack[group.title],
-    }))
-  );
+  const filters = ["All workshops", "Marketing & Experience", "Process & Workflow"];
 
   const [activeFilter, setActiveFilter] = useState("All workshops");
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
 
-  const filters = ["All workshops", ...groups.map((g) => g.title)];
-
   const visibleWorkshops =
     activeFilter === "All workshops"
-      ? allWorkshops
-      : allWorkshops.filter((w) => w.track === activeFilter);
+      ? workshops
+      : workshops.filter((w) => w.track === activeFilter);
 
-  const handleCardClick = (workshop) => {
-    setSelectedWorkshop(workshop);
-  };
-
-  const handleClose = () => {
-    setSelectedWorkshop(null);
-  };
+  const handleCardClick = (workshop) => setSelectedWorkshop(workshop);
+  const handleClose = () => setSelectedWorkshop(null);
 
   return (
-    <section
-      id="workshop-categories"
-      className="relative py-19 overflow-hidden"
-    >
+    <section id="workshop-categories" className="relative py-19 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* 2-column layout: sidebar + grid */}
         <div className="grid gap-12 lg:grid-cols-4">
-          {/* LEFT COLUMN – title, description, filters */}
+          {/* LEFT COLUMN */}
           <aside className="lg:col-span-1 space-y-8">
             <div>
               <h2 className="text-3xl sm:text-3xl font-bold tracking-tight text-[#0B1C33]">
@@ -276,7 +196,7 @@ export default function WorkshopCategories() {
               </p>
             </div>
 
-            {/* Filters list */}
+            {/* Filters */}
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.15em] text-slate-900 mb-3">
                 Tracks
@@ -305,12 +225,11 @@ export default function WorkshopCategories() {
             </div>
           </aside>
 
-          {/* RIGHT COLUMN – grid of cards */}
+          {/* RIGHT COLUMN */}
           <div className="lg:col-span-3">
             <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {visibleWorkshops.map((workshop) => {
-                const img =
-                  workshopImages[workshop.title] || workshopImages.default;
+                const img = workshopImages[workshop.title] || workshopImages.default;
 
                 return (
                   <article
@@ -318,7 +237,6 @@ export default function WorkshopCategories() {
                     onClick={() => handleCardClick(workshop)}
                     className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_14px_35px_rgba(15,23,42,0.10)] hover:shadow-[0_20px_55px_rgba(15,23,42,0.20)] hover:-translate-y-0.5 transition-all"
                   >
-                    {/* Image */}
                     <div className="relative h-40 w-full overflow-hidden">
                       <Image
                         src={img.src}
@@ -330,7 +248,6 @@ export default function WorkshopCategories() {
                       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
                     </div>
 
-                    {/* Text content */}
                     <div className="p-4 sm:p-5">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-700">
                         {workshop.track}
@@ -346,7 +263,6 @@ export default function WorkshopCategories() {
                         <span className="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 font-medium text-slate-700 border border-slate-200">
                           {workshop.durationLabel}
                         </span>
-                      
                       </div>
                     </div>
                   </article>
@@ -357,10 +273,9 @@ export default function WorkshopCategories() {
         </div>
       </div>
 
-      {/* POPUP MODAL */}
+      {/* MODAL */}
       {selectedWorkshop && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6">
-          {/* backdrop */}
           <button
             type="button"
             aria-label="Close workshop details"
@@ -368,24 +283,13 @@ export default function WorkshopCategories() {
             onClick={handleClose}
           />
 
-          {/* dialog */}
           <div className="relative z-10 w-full max-w-3xl rounded-3xl bg-white shadow-2xl overflow-hidden">
-            {/* image header */}
             <div className="relative h-48 w-full">
               {(() => {
-                const img =
-                  workshopImages[selectedWorkshop.title] ||
-                  workshopImages.default;
-                return (
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="768px"
-                    className="object-cover"
-                  />
-                );
+                const img = workshopImages[selectedWorkshop.title] || workshopImages.default;
+                return <Image src={img.src} alt={img.alt} fill sizes="768px" className="object-cover" />;
               })()}
+
               <button
                 type="button"
                 onClick={handleClose}
@@ -395,7 +299,6 @@ export default function WorkshopCategories() {
               </button>
             </div>
 
-            {/* content */}
             <div className="p-6 sm:p-8">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 mb-2">
                 {selectedWorkshop.track}
@@ -409,7 +312,6 @@ export default function WorkshopCategories() {
                 {selectedWorkshop.subtitle}
               </p>
 
-              {/* meta chips (no facilitator-led wording) */}
               <div className="flex flex-wrap gap-2 text-[11px] sm:text-xs mb-9">
                 <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-800 border border-slate-200">
                   {selectedWorkshop.durationLabel}
@@ -425,7 +327,6 @@ export default function WorkshopCategories() {
 
                 return (
                   <div className="space-y-6 max-w-2xl">
-                    {/* OVERVIEW */}
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-900 mb-1">
                         Overview
@@ -435,7 +336,6 @@ export default function WorkshopCategories() {
                       </p>
                     </div>
 
-                    {/* WHO IT'S FOR */}
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-900 mb-1">
                         Who it&apos;s for
@@ -445,7 +345,6 @@ export default function WorkshopCategories() {
                       </p>
                     </div>
 
-                    {/* FORMAT */}
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-900 mb-1">
                         Format
@@ -455,7 +354,6 @@ export default function WorkshopCategories() {
                       </p>
                     </div>
 
-                    {/* YOU'LL LEARN TO */}
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-slate-900 mb-1">
                         You&apos;ll learn to

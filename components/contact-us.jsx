@@ -5,12 +5,12 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
 export default function ContactUsSection() {
   const workshopOptions = [
+    "AI for Software Specification",
+    "Lean-to Digital Transformation",
+    "AI workflow for Business Process Optimization",
     "AI for Digital Content Creators",
-    "AI for Campaign Performance Analysis",
-    "AI for Data-Driven Experience Marketing",
-    "Generative AI for Brand Storytelling",
-    "AI for Social Listening & Trend Discovery",
-    "Personalization at Scale with AI",
+    "AI for Data-Driven experience marketing",
+    "AI in motion",
   ];
 
   const [form, setForm] = useState({
