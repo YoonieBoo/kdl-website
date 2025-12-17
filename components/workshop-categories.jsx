@@ -209,12 +209,7 @@ export default function WorkshopCategories() {
       subtitle: "Applied AI for product and IT requirement clarity.",
       durationLabel: "6 hours · Intermediate",
     },
-    {
-      title: "AI for Digital Content Creators",
-      track: "Marketing & Experience",
-      subtitle: "Hands-on AI skills for content and campaign workflows.",
-      durationLabel: "3 hours · Beginner–Intermediate",
-    },
+  
     {
       title: "AI for Data-Driven experience marketing",
       track: "Marketing & Experience",
@@ -225,6 +220,12 @@ export default function WorkshopCategories() {
       title: "AI in motion",
       track: "Marketing & Experience",
       subtitle: "Live AI demos across real workflows and templates.",
+      durationLabel: "3 hours · Beginner–Intermediate",
+    },
+    {
+      title: "AI for Digital Content Creators",
+      track: "Marketing & Experience",
+      subtitle: "Hands-on AI skills for content and campaign workflows.",
       durationLabel: "3 hours · Beginner–Intermediate",
     },
   ];
