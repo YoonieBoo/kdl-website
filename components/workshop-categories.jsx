@@ -16,33 +16,7 @@ import Image from "next/image";
 // Detailed copy for each workshop (used in the popup)
 // ✅ Updated: each workshop supports 3h + 6h tabs in the modal
 const workshopDetails = {
-  "AI for Software Specification": {
-    who: "Product managers, BAs, and engineering leads working on digital products.",
-    durations: {
-      "3": {
-        overview:
-          "A fast-paced introduction to using AI for clearer requirements and user stories.",
-        format:
-          "3-hour live session with guided examples and lightweight exercises.",
-        outcomes: [
-          "Understand how AI supports requirement clarity.",
-          "Draft better user stories faster.",
-          "Spot common requirement pitfalls early.",
-        ],
-      },
-      "6": {
-        overview:
-          "Use AI to support clearer requirements, user stories, and acceptance criteria for product and engineering teams.",
-        format:
-          "6-hour live session split into two parts with hands-on specification labs.",
-        outcomes: [
-          "Turn business goals into AI-assisted user stories and specs.",
-          "Use AI to explore edge cases and scenarios.",
-          "Improve clarity of requirements while keeping ownership with humans.",
-        ],
-      },
-    },
-  },
+
 
   "Lean-to Digital Transformation": {
     who: "Transformation leaders, operations managers, and digital leads.",
@@ -95,6 +69,34 @@ const workshopDetails = {
           "Document current-state and target-state workflow clearly.",
           "Identify high-impact automation opportunities.",
           "Define roles, controls, and hand-offs in AI-enabled processes.",
+        ],
+      },
+    },
+  },
+
+    "AI for Software Specification": {
+    who: "Product managers, BAs, and engineering leads working on digital products.",
+    durations: {
+      "3": {
+        overview:
+          "A fast-paced introduction to using AI for clearer requirements and user stories.",
+        format:
+          "3-hour live session with guided examples and lightweight exercises.",
+        outcomes: [
+          "Understand how AI supports requirement clarity.",
+          "Draft better user stories faster.",
+          "Spot common requirement pitfalls early.",
+        ],
+      },
+      "6": {
+        overview:
+          "Use AI to support clearer requirements, user stories, and acceptance criteria for product and engineering teams.",
+        format:
+          "6-hour live session split into two parts with hands-on specification labs.",
+        outcomes: [
+          "Turn business goals into AI-assisted user stories and specs.",
+          "Use AI to explore edge cases and scenarios.",
+          "Improve clarity of requirements while keeping ownership with humans.",
         ],
       },
     },
@@ -188,12 +190,7 @@ const workshopDetails = {
 // ✅ Only 6 workshops
 export default function WorkshopCategories() {
   const workshops = [
-    {
-      title: "AI for Software Specification",
-      track: "Process & Workflow",
-      subtitle: "Applied AI for product and IT requirement clarity.",
-      durationLabel: "6 hours · Intermediate",
-    },
+    
     {
       title: "Lean-to Digital Transformation",
       track: "Process & Workflow",
@@ -204,6 +201,12 @@ export default function WorkshopCategories() {
       title: "AI workflow for Business Process Optimization",
       track: "Process & Workflow",
       subtitle: "Design workflows that reduce bottlenecks and rework.",
+      durationLabel: "6 hours · Intermediate",
+    },
+    {
+      title: "AI for Software Specification",
+      track: "Process & Workflow",
+      subtitle: "Applied AI for product and IT requirement clarity.",
       durationLabel: "6 hours · Intermediate",
     },
     {
@@ -228,10 +231,7 @@ export default function WorkshopCategories() {
 
   // ✅ Images: map only the 6 titles
   const workshopImages = {
-    "AI for Software Specification": {
-      src: "/images/workshops/software-specification.png",
-      alt: "AI for software specification workshop",
-    },
+    
     "Lean-to Digital Transformation": {
       src: "/images/workshops/lean-digital-transformation.png",
       alt: "Lean-to digital transformation workshop",
@@ -239,6 +239,10 @@ export default function WorkshopCategories() {
     "AI workflow for Business Process Optimization": {
       src: "/images/workshops/workflow-optimization.jpg",
       alt: "AI workflow for business process optimization workshop",
+    },
+    "AI for Software Specification": {
+      src: "/images/workshops/software-specification.png",
+      alt: "AI for software specification workshop",
     },
     "AI for Digital Content Creators": {
       src: "/images/workshops/digital-content.png",
