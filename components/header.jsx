@@ -7,8 +7,8 @@ import { Menu, X } from "lucide-react";
 const navItems = [
   { label: "Home", href: "#hero" },
   { label: "Workshops", href: "#workshop-categories" },
-  // { label: "Courses", href: "#upcoming-courses" },
-  { label: "About Us", href: "#who-we-are" },
+  { label: "About", href: "#who-we-are" },
+  { label: "Contact Us", href: "#contact-us" }, // ✅ added
 ];
 
 export default function Header() {
@@ -44,17 +44,21 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-
-            
           </nav>
 
           {/* MOBILE BUTTON */}
           <button
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            type="button"
+            onClick={() => setIsMobileOpen((v) => !v)}
             className="md:hidden text-slate-700 hover:text-slate-900 transition-colors"
             aria-label="Toggle navigation"
+            aria-expanded={isMobileOpen}
           >
-            {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
@@ -76,8 +80,6 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
-
-             
             </div>
           </div>
         )}

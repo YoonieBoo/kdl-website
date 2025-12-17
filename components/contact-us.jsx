@@ -62,7 +62,7 @@ export default function ContactUsSection() {
 
   return (
     <section
-      id="contact"
+      id="contact-us"
       className="relative py-12 overflow-hidden bg-gradient-to-b from-white via-[#E6EEFF] to-[#F7FAFF]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
