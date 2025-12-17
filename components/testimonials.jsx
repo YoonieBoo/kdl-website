@@ -7,9 +7,9 @@ const testimonials = [
   {
     id: 1,
     quote:
-      "เวิร์กช็อปนี้ช่วยให้ทีมของเรานำ AI ไปใช้กับงานจริงได้อย่างมีประสิทธิภาพ และเห็นผลชัดเจนในกระบวนการทำงาน",
-    name: "P Maii",
-    role: "CEO",
+      "ช่วยให้เข้าใจ AI มากขึ้น และเริ่มเห็นว่าควรนำไปใช้กับงานตรงไหนได้บ้าง",
+    name: "Arada",
+    role: "Product Manager",
     avatar: "/images/avatars/User1.jpg",
   },
   {
@@ -22,6 +22,15 @@ const testimonials = [
   },
   {
     id: 3,
+    quote:
+      "ชอบที่ workshop อธิบาย AI-driven marketing ได้เข้าใจง่าย จากที่เคยคิดว่ายาก ทีมสามารถนำไปปรับใช้กับโปรเจคที่ทำอยู่ได้จริง",
+    name: "Mai",
+    role: "Marketing Manager",
+    avatar: "/images/avatars/User2.png",
+  },
+
+  {
+    id: 4,
     quote:
       "Clear, practical, and hands-on. The workshops helped our people actually apply AI to real projects.",
     name: "Alurra N",
