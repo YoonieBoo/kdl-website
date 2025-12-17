@@ -236,18 +236,23 @@ export default function ContactUsSection() {
                     <Phone className="h-4 w-4 text-cyan-300" />
                     <div>
                       <p className="text-xs uppercase text-slate-400">Phone</p>
-                      <p className="font-medium">+66 123 456 789</p>
+                      <p className="font-medium">081-9291891 <br /> 080-9636451</p>
                     </div>
                   </div>
 
-                  {/* Address */}
-                  <div className="flex items-start gap-3">
-                    <MapPin className="h-4 w-4 text-cyan-300" />
-                    <div>
-                      <p className="text-xs uppercase text-slate-400">Address</p>
-                      <p className="font-medium">123 Huamak Street, Bangkok</p>
-                    </div>
-                  </div>
+{/* Address */}
+<div className="flex items-start gap-3">
+  <MapPin className="mt-1 h-4 w-4 shrink-0 text-cyan-300" />
+  <div>
+    <p className="text-xs uppercase tracking-widest text-slate-400">
+      Address
+    </p>
+    <p className="mt-0.5 text-sm leading-relaxed font-medium text-white">
+      82 Ramkhamhaeng 24 Alley, Lane 32, Hua Mak, Bang Kapi District, Bangkok 10240
+    </p>
+  </div>
+</div>
+
 
                   {/* Hours */}
                   <div className="flex items-start gap-3">
@@ -261,11 +266,17 @@ export default function ContactUsSection() {
               </div>
 
               {/* Social links */}
-              <div className="mt-10 flex gap-6 text-xs text-slate-400">
-                <span>LinkedIn</span>
-                <span>Twitter</span>
-                <span>Facebook</span>
-              </div>
+              <div className="mt-8">
+  <a
+    href="https://www.facebook.com/profile.php?id=61585003467334"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-sm font-medium text-sky-500 hover:text-sky-400 transition"
+  >
+    Facebook
+  </a>
+</div>
+
             </div>
           </div>
         </div>
