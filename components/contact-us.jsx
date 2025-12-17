@@ -76,10 +76,13 @@ export default function ContactUsSection() {
               Contact Us
             </h2>
 
-            <p className="text-sm sm:text-base text-slate-600 mb-10 max-w-md">
+            <p className="text-sm font-semibold sm:text-base text-slate-600 mb-6 max-w-md">
               Feel free to reach out any time.
-              <br />
-              We’ll get back to you as soon as we can.
+            </p>
+
+            <p className="text-xs sm:text-base text-slate-600 mb-8 max-w-md">
+            
+              Whether you’re interested in a workshop, need pricing details, or want a customized program for your team, <br /> we’ll get back to you as soon as we can.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
