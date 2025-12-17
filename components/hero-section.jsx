@@ -22,8 +22,8 @@ const HeroSection = () => {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold leading-tight tracking-tight text-slate-50 mb-10">
-              Business-Ready <br />
-              AI for Teams
+              AI-Driven <br />
+              Learning Experience
             </h1>
 
             <p className="text-sm md:text-base font-normal text-slate-200 leading-relaxed mb-8 max-w-xl">
