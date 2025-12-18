@@ -11,6 +11,7 @@ export default function ContactUsSection() {
     "AI for Digital Content Creators",
     "AI for Data-Driven experience marketing",
     "AI in motion",
+    "Others (Custom / Pricing)",
   ];
 
   const [form, setForm] = useState({
@@ -122,24 +123,27 @@ export default function ContactUsSection() {
                   Workshop Interested In
                 </label>
 
+                
                 <select
-                  value={form.workshop}
-                  onChange={(e) =>
-                    setForm({ ...form, workshop: e.target.value })
-                  }
-                  className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
-                             focus:border-[#0B1C33] outline-none"
-                >
-                  <option value="" disabled>
-                    Select a workshop
-                  </option>
+  value={form.workshop}
+  onChange={(e) =>
+    setForm({ ...form, workshop: e.target.value })
+  }
+  className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
+             focus:border-[#0B1C33] outline-none"
+>
+  <option value="" disabled>
+    Select a workshop
+  </option>
 
-                  {workshopOptions.map((w) => (
-                    <option key={w} value={w} className="text-slate-900">
-                      {w}
-                    </option>
-                  ))}
-                </select>
+  {workshopOptions.map((w) => (
+    <option key={w} value={w} className="text-slate-900">
+      {w}
+    </option>
+  ))}
+</select>
+
+
 
                 {/* tiny helper text (optional) */}
                 <p className="mt-2 text-xs text-slate-500">
