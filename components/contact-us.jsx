@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { FaFacebookF } from "react-icons/fa";
+
 
 export default function ContactUsSection() {
   const workshopOptions = [
@@ -270,16 +272,21 @@ export default function ContactUsSection() {
               </div>
 
               {/* Social links */}
-              <div className="mt-8">
+<div className="mt-8">
   <a
     href="https://www.facebook.com/profile.php?id=61585003467334"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-sm font-medium text-sky-500 hover:text-sky-400 transition"
+    className="inline-flex items-center gap-2 text-sm font-medium text-sky-500 hover:text-sky-400 transition"
+    aria-label="Follow us on Facebook"
   >
-    Facebook
+    <span>Follow us on</span>
+    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/15 transition">
+      <FaFacebookF className="h-4 w-4" />
+    </span>
   </a>
 </div>
+
 
             </div>
           </div>
