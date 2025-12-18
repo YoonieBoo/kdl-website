@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 const navItems = [
   { label: "Home", href: "#hero" },
   { label: "Workshops", href: "#workshop-categories" },
-  { label: "About", href: "#who-we-are" },
+  { label: "About KDL", href: "#who-we-are" },
   { label: "Contact Us", href: "#contact-us" }, // ✅ added
 ];
 
