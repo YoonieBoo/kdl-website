@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "Home", href: "#hero" },
   { label: "Workshops", href: "#workshop-categories" },
   { label: "About KDL", href: "#who-we-are" },
-  { label: "Contact Us", href: "#contact-us" }, // ✅ added
+  { label: "Contact Us", href: "#contact-us" },
 ];
 
 export default function Header() {
@@ -20,9 +21,17 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-[#0B1C33] rounded-lg flex items-center justify-center text-white font-semibold text-xs tracking-[0.18em]">
-              KDL
+            <div className="w-9 h-9 rounded-lg overflow-hidden bg-[#0B1C33] flex items-center justify-center">
+              <Image
+                src="/images/KDL-logo.png"   // ✅ change filename/path
+                alt="KDL logo"
+                width={36}
+                height={36}
+                className="w-full h-full object-cover" // use object-contain if needed
+                priority
+              />
             </div>
+
             <span className="font-bold text-base text-[#0B1C33]">
               Knowledge Discovery Lab
             </span>
@@ -54,11 +63,7 @@ export default function Header() {
             aria-label="Toggle navigation"
             aria-expanded={isMobileOpen}
           >
-            {isMobileOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
