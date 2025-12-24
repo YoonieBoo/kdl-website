@@ -46,26 +46,29 @@ const HeroSection = () => {
             </div>
 
             {/* Stats */}
-            <div className="mt-15 flex flex-col sm:flex-row gap-10">
-              <div>
-                <p className="text-2xl font-bold text-slate-50">100+</p>
-                <p className="text-xs md:text-sm text-slate-400">
-                  Professionals trained
-                </p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-slate-50">20+</p>
-                <p className="text-xs md:text-sm text-slate-400">
-                  Workshops &amp; programs
-                </p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-amber-300">95%</p>
-                <p className="text-xs md:text-sm text-slate-400">
-                  Participant satisfaction
-                </p>
-              </div>
-            </div>
+<div className="mt-10 grid grid-cols-3 gap-5 sm:mt-15 sm:flex sm:flex-row sm:gap-10">
+  <div className="text-center sm:text-left">
+    <p className="text-xl sm:text-2xl font-bold text-slate-50">100+</p>
+    <p className="mt-1 text-[11px] sm:text-sm text-slate-400 leading-snug">
+      Professionals trained
+    </p>
+  </div>
+
+  <div className="text-center sm:text-left">
+    <p className="text-xl sm:text-2xl font-bold text-slate-50">20+</p>
+    <p className="mt-1 text-[11px] sm:text-sm text-slate-400 leading-snug">
+      Workshops &amp; programs
+    </p>
+  </div>
+
+  <div className="text-center sm:text-left">
+    <p className="text-xl sm:text-2xl font-bold text-amber-300">95%</p>
+    <p className="mt-1 text-[11px] sm:text-sm text-slate-400 leading-snug">
+      Participant satisfaction
+    </p>
+  </div>
+</div>
+
           </div>
 
           {/* RIGHT COLUMN – illustration + spread-out cards */}
