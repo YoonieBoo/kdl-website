@@ -1,9 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { FaFacebookF } from "react-icons/fa";
-
 
 export default function ContactUsSection() {
   const workshopOptions = [
@@ -26,19 +25,49 @@ export default function ContactUsSection() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ type: "", msg: "" }); // "success" | "error" | ""
 
-  const isValid = useMemo(() => {
-    const nameOk = form.name.trim().length > 0;
-    const emailOk = /^\S+@\S+\.\S+$/.test(form.email.trim());
-    const workshopOk = form.workshop.trim().length > 0;
-    const msgOk = form.message.trim().length > 0;
-    return nameOk && emailOk && workshopOk && msgOk;
-  }, [form]);
+  const isValid =
+    form.name.trim().length > 0 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim()) &&
+    form.workshop.trim().length > 0 &&
+    form.message.trim().length > 0;
+  const isEmailValid =
+    form.email.trim().length === 0 ||
+    /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim());
+
+  const setField = (key, value) => {
+    setStatus({ type: "", msg: "" });
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleFieldChange = (key) => (e) => {
+    setField(key, e.target.value);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    // ✅ clear message each submit attempt
     setStatus({ type: "", msg: "" });
 
-    if (!isValid || loading) return;
+    if (!isValid) {
+      const nameOk = form.name.trim().length > 0;
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(
+        form.email.trim()
+      );
+      const workshopOk = form.workshop.trim().length > 0;
+      const messageOk = form.message.trim().length > 0;
+
+      let msg = "Please fill in all required fields.";
+      if (!nameOk) msg = "Please enter your name.";
+      else if (!emailOk) msg = "Please enter a valid email address.";
+      else if (!workshopOk) msg = "Please select a workshop.";
+      else if (!messageOk) msg = "Please enter a message.";
+
+      setStatus({ type: "error", msg });
+      return;
+    }
+
+    if (loading) return;
 
     setLoading(true);
     try {
@@ -51,7 +80,10 @@ export default function ContactUsSection() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || "Failed to send");
 
+      // ✅ show success message
       setStatus({ type: "success", msg: "Sent! We’ll get back to you soon." });
+
+      // ✅ reset form so user can send again right away
       setForm({ name: "", email: "", workshop: "", message: "" });
     } catch (err) {
       setStatus({
@@ -84,11 +116,10 @@ export default function ContactUsSection() {
             </p>
 
             <p className="text-xs sm:text-base text-slate-600 mb-8 max-w-md">
-            
               Whether you’re interested in a workshop, need pricing details, or want a customized program for your team, <br /> we’ll get back to you as soon as we can.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} noValidate className="space-y-6">
               {/* Name */}
               <div>
                 <label className="block text-sm font-semibold text-slate-600 mb-1.5">
@@ -96,9 +127,13 @@ export default function ContactUsSection() {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   placeholder="Your name"
                   value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  onChange={handleFieldChange("name")}
+                  onInput={handleFieldChange("name")}
+                  autoComplete="name"
+                  required
                   className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
                              focus:border-[#0B1C33] outline-none"
                 />
@@ -111,12 +146,21 @@ export default function ContactUsSection() {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="you@example.com"
                   value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  onChange={handleFieldChange("email")}
+                  onInput={handleFieldChange("email")}
+                  autoComplete="email"
+                  required
                   className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
                              focus:border-[#0B1C33] outline-none"
                 />
+                {!isEmailValid && (
+                  <p className="mt-2 text-xs text-red-700">
+                    Please enter a valid email address.
+                  </p>
+                )}
               </div>
 
               {/* Workshop Dropdown (NEW) */}
@@ -125,27 +169,25 @@ export default function ContactUsSection() {
                   Workshop Interested In
                 </label>
 
-                
                 <select
-  value={form.workshop}
-  onChange={(e) =>
-    setForm({ ...form, workshop: e.target.value })
-  }
-  className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
-             focus:border-[#0B1C33] outline-none"
->
-  <option value="" disabled>
-    Select a workshop
-  </option>
+                  name="workshop"
+                  value={form.workshop}
+                  onChange={handleFieldChange("workshop")}
+                  onInput={handleFieldChange("workshop")}
+                  required
+                  className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
+                             focus:border-[#0B1C33] outline-none"
+                >
+                  <option value="" disabled>
+                    Select a workshop
+                  </option>
 
-  {workshopOptions.map((w) => (
-    <option key={w} value={w} className="text-slate-900">
-      {w}
-    </option>
-  ))}
-</select>
-
-
+                  {workshopOptions.map((w) => (
+                    <option key={w} value={w} className="text-slate-900">
+                      {w}
+                    </option>
+                  ))}
+                </select>
 
                 {/* tiny helper text (optional) */}
                 <p className="mt-2 text-xs text-slate-500">
@@ -160,9 +202,12 @@ export default function ContactUsSection() {
                 </label>
                 <textarea
                   rows={3}
+                  name="message"
                   placeholder="Tell us a little about what you need…"
                   value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  onChange={handleFieldChange("message")}
+                  onInput={handleFieldChange("message")}
+                  required
                   className="w-full border-b border-slate-300 bg-transparent py-2 text-sm
                              resize-none focus:border-[#0B1C33] outline-none"
                 />
@@ -184,7 +229,6 @@ export default function ContactUsSection() {
               {/* Submit */}
               <button
                 type="submit"
-                disabled={!isValid || loading}
                 className="mt-4 inline-flex items-center justify-center px-10 py-3 rounded-full
                            text-sm font-semibold tracking-[0.18em] uppercase
                            bg-[#0B1C33] text-white hover:bg-slate-900 transition
@@ -242,23 +286,24 @@ export default function ContactUsSection() {
                     <Phone className="h-4 w-4 text-cyan-300" />
                     <div>
                       <p className="text-xs uppercase text-slate-400">Phone</p>
-                      <p className="font-medium">081-9291891 <br /> 080-9636451</p>
+                      <p className="font-medium">
+                        081-9291891 <br /> 080-9636451
+                      </p>
                     </div>
                   </div>
 
-{/* Address */}
-<div className="flex items-start gap-3">
-  <MapPin className="mt-1 h-4 w-4 shrink-0 text-cyan-300" />
-  <div>
-    <p className="text-xs uppercase tracking-widest text-slate-400">
-      Address
-    </p>
-    <p className="mt-0.5 text-sm leading-relaxed font-medium text-white">
-      82 Ramkhamhaeng 24 Alley, Lane 32, Hua Mak, Bang Kapi District, Bangkok 10240
-    </p>
-  </div>
-</div>
-
+                  {/* Address */}
+                  <div className="flex items-start gap-3">
+                    <MapPin className="mt-1 h-4 w-4 shrink-0 text-cyan-300" />
+                    <div>
+                      <p className="text-xs uppercase tracking-widest text-slate-400">
+                        Address
+                      </p>
+                      <p className="mt-0.5 text-sm leading-relaxed font-medium text-white">
+                        82 Ramkhamhaeng 24 Alley, Lane 32, Hua Mak, Bang Kapi District, Bangkok 10240
+                      </p>
+                    </div>
+                  </div>
 
                   {/* Hours */}
                   <div className="flex items-start gap-3">
@@ -272,22 +317,20 @@ export default function ContactUsSection() {
               </div>
 
               {/* Social links */}
-<div className="mt-8">
-  <a
-    href="https://www.facebook.com/profile.php?id=61585003467334"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-flex items-center gap-2 text-sm font-medium text-sky-500 hover:text-sky-400 transition"
-    aria-label="Follow us on Facebook"
-  >
-    <span>Follow us on</span>
-    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/15 transition">
-      <FaFacebookF className="h-4 w-4" />
-    </span>
-  </a>
-</div>
-
-
+              <div className="mt-8">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61585003467334"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-sky-500 hover:text-sky-400 transition"
+                  aria-label="Follow us on Facebook"
+                >
+                  <span>Follow us on</span>
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/15 transition">
+                    <FaFacebookF className="h-4 w-4" />
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
