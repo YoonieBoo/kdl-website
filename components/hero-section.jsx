@@ -16,32 +16,119 @@ const HeroSection = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-24 items-center">
           {/* LEFT COLUMN */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center text-center lg:text-left items-center lg:items-start">
             <div className="mb-7"></div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold leading-tight tracking-tight text-slate-50 mb-10">
-              AI-Driven <br />
-              Learning Experience
-            </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold leading-tight tracking-tight text-slate-50 mb-8 lg:mb-10">
+              AI-Driven{" "}
+  <span className="block lg:inline">
+    Learning Experience
+  </span>
+</h1>
 
-            <p className="text-sm md:text-base font-normal text-slate-200 leading-relaxed mb-8 max-w-xl">
-              Hands-on AI workshops that turn real business problems into <br />
-              real-world solutions, helping teams automate workflows and <br />
+            <p className="text-sm md:text-base font-normal text-slate-200 leading-relaxed mb-6 lg:mb-8 max-w-xl">
+              Hands-on AI workshops that turn real business problems into{" "}
+              <br className="hidden sm:block" />
+              real-world solutions, helping teams automate workflows and{" "}
+              <br className="hidden sm:block" />
               make better data-driven decisions.
             </p>
 
+            {/* ✅ MOBILE ONLY: glass chips block placed between subtitle and CTA */}
+            <div className="w-full lg:hidden mb-6">
+              <div className="relative h-[16.5rem] flex items-center justify-center">
+                {/* Dashboard illustration behind cards */}
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center float-1">
+                  <div className="relative h-56 w-56 rounded-3xl border border-slate-700/70 bg-gradient-to-br from-slate-950/95 via-slate-900/85 to-slate-800/80 shadow-[0_32px_90px_rgba(15,23,42,0.95)] overflow-hidden [transform:scale(0.92)]">
+                    {/* window header */}
+                    <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-slate-700/70">
+                      <div className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                        <span className="h-2 w-2 rounded-full bg-sky-400" />
+                        <span className="h-2 w-2 rounded-full bg-amber-300" />
+                      </div>
+                      <div className="h-5 w-16 rounded-full bg-slate-700/80" />
+                    </div>
+
+                    {/* ghost inputs/cards */}
+                    <div className="px-4 pt-3 space-y-3">
+                      <div className="h-9 rounded-2xl bg-slate-800/90 border border-slate-600/80" />
+                      <div className="h-9 rounded-2xl bg-slate-800/90 border border-slate-600/80" />
+                      <div className="mt-2 grid grid-cols-3 gap-2">
+                        <div className="h-14 rounded-2xl bg-slate-800/90 border border-slate-600/80" />
+                        <div className="h-14 rounded-2xl bg-sky-500/20 border border-sky-400/60" />
+                        <div className="h-14 rounded-2xl bg-emerald-500/20 border border-emerald-300/60" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating cards */}
+                <div className="relative w-full max-w-lg">
+                  {/* AI Workshops – mid-left */}
+                  <div
+                    className="
+                      absolute left-2 top-7
+                      rounded-2xl bg-slate-900/90 border border-slate-600/80 backdrop-blur-2xl
+                      px-4 py-3
+                      shadow-[0_22px_55px_rgba(0,0,0,0.8)]
+                      float-3
+                    "
+                  >
+                    <p className="text-[12px] font-semibold text-sky-100">AI Workshops</p>
+                    <p className="mt-1 text-[12px] text-sky-50/85">
+                      Hands-on sessions for corporate teams.
+                    </p>
+                  </div>
+
+                  {/* Applied Learning – upper-right */}
+                  <div
+                    className="
+                      absolute right-2 top-12
+                      rounded-2xl bg-cyan-400/10 border border-cyan-300/30 backdrop-blur-2xl
+                      px-4 py-3
+                      shadow-[0_24px_70px_rgba(34,211,238,0.25)]
+                      float-4
+                    "
+                  >
+                    <p className="text-[12px] font-semibold text-cyan-200">
+                      Applied Learning
+                    </p>
+                    <p className="mt-1 text-[12px] text-cyan-100/90">
+                      Real data, real business impact.
+                    </p>
+                  </div>
+
+                  {/* Transformation chip – bottom */}
+                  <div
+                    className="
+                      absolute left-4 bottom-2
+                      rounded-2xl bg-slate-900/90 border border-slate-600/80 backdrop-blur-2xl
+                      px-4 py-2.5
+                      shadow-[0_18px_45px_rgba(0,0,0,0.85)]
+                      float-3
+                    "
+                  >
+                    <p className="text-[11px] font-medium text-sky-50">
+                      Transformation programs with TLM &amp; DU DA TAE.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* CTAs */}
-            <div className="mt-7 flex flex-col sm:flex-row gap-4">
+            <div className="mt-2 lg:mt-7 flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center lg:justify-start">
               <Link
                 href="#workshop-categories"
-                className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-slate-50 text-slate-900 font-semibold shadow-lg shadow-slate-900/40 hover:bg-sky-50 hover:text-slate-950 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-slate-50 text-slate-900 font-semibold shadow-lg shadow-slate-900/40 hover:bg-sky-50 hover:text-slate-950 transition-colors w-full sm:w-auto"
               >
                 Explore Workshops
               </Link>
             </div>
 
             {/* Stats */}
-            <div className="mt-10 grid grid-cols-3 gap-5 sm:mt-15 sm:flex sm:flex-row sm:gap-10">
+            <div className="mt-10 grid grid-cols-3 gap-5 sm:mt-15 sm:flex sm:flex-row sm:gap-10 w-full justify-center lg:justify-start">
               <div className="text-center sm:text-left">
                 <p className="text-xl sm:text-2xl font-bold text-slate-50">100+</p>
                 <p className="mt-1 text-[11px] sm:text-sm text-slate-400 leading-snug">
@@ -65,8 +152,8 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN – illustration + spread-out cards */}
-          <div className="relative h-[22rem] sm:h-[26rem] lg:h-[28rem] flex items-center justify-center">
+          {/* ✅ DESKTOP/TABLET ORIGINAL RIGHT COLUMN (unchanged layout) */}
+          <div className="hidden lg:flex relative h-[22rem] sm:h-[26rem] lg:h-[28rem] items-center justify-center">
             {/* Dashboard illustration behind cards */}
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center float-1">
               <div className="relative h-64 w-64 sm:h-72 sm:w-72 lg:h-80 lg:w-80 rounded-3xl border border-slate-700/70 bg-gradient-to-br from-slate-950/95 via-slate-900/85 to-slate-800/80 shadow-[0_32px_90px_rgba(15,23,42,0.95)] overflow-hidden">

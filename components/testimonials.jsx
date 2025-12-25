@@ -90,8 +90,10 @@ export default function TestimonialsSection() {
             Testimonials
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-50 leading-tight mb-3">
-            What People Say About Us
-          </h2>
+  What People Say{" "}
+  <span className="whitespace-nowrap">About Us</span>
+</h2>
+
           <p className="text-sm sm:text-base text-slate-200/90 leading-relaxed">
             Teams and leaders use our workshops to turn AI ideas into real business results.
           </p>
