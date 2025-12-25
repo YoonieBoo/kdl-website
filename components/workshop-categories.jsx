@@ -13,11 +13,7 @@ import Image from "next/image";
  * - AI in motion
  */
 
-// Detailed copy for each workshop (used in the popup)
-// ✅ Updated: each workshop supports 3h + 6h tabs in the modal
 const workshopDetails = {
-
-
   "Lean-to Digital Transformation": {
     who: "Transformation leaders, operations managers, and digital leads.",
     durations: {
@@ -74,7 +70,7 @@ const workshopDetails = {
     },
   },
 
-    "AI for Software Specification": {
+  "AI for Software Specification": {
     who: "Product managers, BAs, and engineering leads working on digital products.",
     durations: {
       "3": {
@@ -187,10 +183,8 @@ const workshopDetails = {
   },
 };
 
-// ✅ Only 6 workshops
 export default function WorkshopCategories() {
   const workshops = [
-    
     {
       title: "Lean-to Digital Transformation",
       track: "Process & Workflow",
@@ -209,7 +203,6 @@ export default function WorkshopCategories() {
       subtitle: "Applied AI for product and IT requirement clarity.",
       durationLabel: "6 hours · Intermediate",
     },
-  
     {
       title: "AI for Data-Driven experience marketing",
       track: "Marketing & Experience",
@@ -230,9 +223,7 @@ export default function WorkshopCategories() {
     },
   ];
 
-  // ✅ Images: map only the 6 titles
   const workshopImages = {
-    
     "Lean-to Digital Transformation": {
       src: "/images/workshops/lean-digital-transformation.png",
       alt: "Lean-to digital transformation workshop",
@@ -267,8 +258,6 @@ export default function WorkshopCategories() {
 
   const [activeFilter, setActiveFilter] = useState("All workshops");
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
-
-  // ✅ NEW: controls the 3h/6h toggle inside the popup
   const [selectedDuration, setSelectedDuration] = useState("6");
 
   const visibleWorkshops =
@@ -284,11 +273,11 @@ export default function WorkshopCategories() {
   const handleClose = () => setSelectedWorkshop(null);
 
   return (
-    <section id="workshop-categories" className="relative py-19 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-4">
+    <section id="workshop-categories" className="relative py-12 sm:py-19 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-4">
           {/* LEFT COLUMN */}
-          <aside className="lg:col-span-1 space-y-8">
+          <aside className="lg:col-span-1 space-y-6 sm:space-y-8">
             <div>
               <h2 className="text-3xl sm:text-3xl font-bold tracking-tight text-[#0B1C33]">
                 Our Workshops
@@ -303,7 +292,7 @@ export default function WorkshopCategories() {
               <p className="text-sm font-bold uppercase tracking-[0.15em] text-slate-900 mb-3">
                 Tracks
               </p>
-              <ul className="space-y-1 text-xs sm:text-sm">
+              <ul className="space-y-2 sm:space-y-1 text-xs sm:text-sm">
                 {filters.map((label) => {
                   const isActive = activeFilter === label;
                   return (
@@ -312,10 +301,10 @@ export default function WorkshopCategories() {
                         type="button"
                         onClick={() => setActiveFilter(label)}
                         className={
-                          "w-full text-left px-3 py-1.5 rounded-full border transition-colors " +
+                          "w-full text-left px-4 py-2 rounded-full border transition-colors " +
                           (isActive
                             ? "border-[#0B1C33] bg-[#0B1C33] text-white font-semibold shadow-sm"
-                            : "border-transparent text-slate-700 hover:border-slate-300 hover:bg-slate-100")
+                            : "border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-100")
                         }
                       >
                         {label}
@@ -329,7 +318,7 @@ export default function WorkshopCategories() {
 
           {/* RIGHT COLUMN */}
           <div className="lg:col-span-3">
-            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {visibleWorkshops.map((workshop) => {
                 const img = workshopImages[workshop.title] || workshopImages.default;
 
@@ -339,7 +328,7 @@ export default function WorkshopCategories() {
                     onClick={() => handleCardClick(workshop)}
                     className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_14px_35px_rgba(15,23,42,0.10)] hover:shadow-[0_20px_55px_rgba(15,23,42,0.20)] hover:-translate-y-0.5 transition-all"
                   >
-                    <div className="relative h-40 w-full overflow-hidden">
+                    <div className="relative h-44 sm:h-40 w-full overflow-hidden">
                       <Image
                         src={img.src}
                         alt={img.alt}
@@ -371,118 +360,133 @@ export default function WorkshopCategories() {
 
       {/* MODAL */}
       {selectedWorkshop && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6">
-          <button
-            type="button"
-            aria-label="Close workshop details"
-            className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"
+        <div className="fixed inset-0 z-50">
+          {/* Backdrop (div so it doesn't interfere with scrolling) */}
+          <div
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm"
             onClick={handleClose}
           />
 
-          <div className="relative z-10 w-full max-w-3xl rounded-3xl bg-white shadow-2xl overflow-hidden">
-            <div className="relative h-48 w-full">
-              {(() => {
-                const img = workshopImages[selectedWorkshop.title] || workshopImages.default;
-                return (
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="768px"
-                    className="object-cover"
-                  />
-                );
-              })()}
+          {/* Modal positioning container */}
+          <div className="relative z-10 flex min-h-full items-end sm:items-center justify-center px-0 sm:px-6 pt-16 sm:py-10">
+            {/* ✅ Scroll happens HERE on mobile */}
+            <div
+              className="
+                relative w-full sm:max-w-3xl
+                rounded-t-3xl sm:rounded-3xl
+                bg-white shadow-2xl
+                max-h-[92dvh] sm:max-h-[85vh]
+                overflow-y-auto
+                overscroll-contain
+                touch-pan-y
+              "
+              style={{ WebkitOverflowScrolling: "touch" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative h-44 sm:h-48 w-full">
+                {(() => {
+                  const img =
+                    workshopImages[selectedWorkshop.title] || workshopImages.default;
+                  return (
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="768px"
+                      className="object-cover"
+                    />
+                  );
+                })()}
 
-              <button
-                type="button"
-                onClick={handleClose}
-                className="absolute top-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900/80 text-white text-sm hover:bg-slate-900"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="p-6 sm:p-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 mb-2">
-                {selectedWorkshop.track}
-              </p>
-
-              <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-2">
-                {selectedWorkshop.title}
-              </h3>
-
-              <p className="text-sm text-slate-600 mb-5 leading-relaxed max-w-2xl">
-                {selectedWorkshop.subtitle}
-              </p>
-
-              {/* ✅ NEW: 3h / 6h Toggle (replaces the old duration chip) */}
-              <div className="flex items-center gap-2 mb-8">
-                {["3", "6"].map((d) => (
-                  <button
-                    key={d}
-                    type="button"
-                    onClick={() => setSelectedDuration(d)}
-                    className={
-                      "px-4 py-1.5 rounded-full text-xs font-semibold border transition " +
-                      (selectedDuration === d
-                        ? "bg-[#0B1C33] text-white border-[#0B1C33]"
-                        : "bg-white text-slate-700 border-slate-300 hover:bg-slate-100")
-                    }
-                  >
-                    {d} hours
-                  </button>
-                ))}
-
+                <button
+                  type="button"
+                  onClick={handleClose}
+                  className="absolute top-4 right-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-900/80 text-white text-sm hover:bg-slate-900"
+                >
+                  ✕
+                </button>
               </div>
 
-              {(() => {
-                const base = workshopDetails[selectedWorkshop.title];
-                const detail = base?.durations?.[selectedDuration];
-                if (!base || !detail) return null;
+              <div className="p-5 sm:p-8">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 mb-2">
+                  {selectedWorkshop.track}
+                </p>
 
-                return (
-                  <div className="space-y-6 max-w-2xl">
-                    <div>
-                      <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-900 mb-1">
-                        Overview
-                      </h4>
-                      <p className="text-sm text-slate-700 leading-relaxed">
-                        {detail.overview}
-                      </p>
-                    </div>
+                <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-2">
+                  {selectedWorkshop.title}
+                </h3>
 
-                    <div>
-                      <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-900 mb-1">
-                        Who it&apos;s for
-                      </h4>
-                      <p className="text-sm text-slate-700 leading-relaxed">
-                        {base.who}
-                      </p>
-                    </div>
+                <p className="text-sm text-slate-600 mb-5 leading-relaxed max-w-2xl">
+                  {selectedWorkshop.subtitle}
+                </p>
 
-                    <div>
-                      <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-900 mb-1">
-                        Format
-                      </h4>
-                      <p className="text-sm text-slate-700 leading-relaxed">
-                        {detail.format}
-                      </p>
-                    </div>
+                {/* 3h / 6h Toggle */}
+                <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8">
+                  {["3", "6"].map((d) => (
+                    <button
+                      key={d}
+                      type="button"
+                      onClick={() => setSelectedDuration(d)}
+                      className={
+                        "px-4 py-2 rounded-full text-xs font-semibold border transition " +
+                        (selectedDuration === d
+                          ? "bg-[#0B1C33] text-white border-[#0B1C33]"
+                          : "bg-white text-slate-700 border-slate-300 hover:bg-slate-100")
+                      }
+                    >
+                      {d} hours
+                    </button>
+                  ))}
+                </div>
 
-                    <div>
-                      <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-slate-900 mb-1">
-                        You&apos;ll learn to
-                      </h4>
-                      <ul className="space-y-2 text-sm text-slate-700 leading-relaxed list-disc pl-5">
-                        {detail.outcomes.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
+                {(() => {
+                  const base = workshopDetails[selectedWorkshop.title];
+                  const detail = base?.durations?.[selectedDuration];
+                  if (!base || !detail) return null;
+
+                  return (
+                    <div className="space-y-6 max-w-2xl">
+                      <div>
+                        <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-900 mb-1">
+                          Overview
+                        </h4>
+                        <p className="text-sm text-slate-700 leading-relaxed">
+                          {detail.overview}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-900 mb-1">
+                          Who it&apos;s for
+                        </h4>
+                        <p className="text-sm text-slate-700 leading-relaxed">
+                          {base.who}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-900 mb-1">
+                          Format
+                        </h4>
+                        <p className="text-sm text-slate-700 leading-relaxed">
+                          {detail.format}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-slate-900 mb-1">
+                          You&apos;ll learn to
+                        </h4>
+                        <ul className="space-y-2 text-sm text-slate-700 leading-relaxed list-disc pl-5">
+                          {detail.outcomes.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                );
-              })()}
+                  );
+                })()}
+              </div>
             </div>
           </div>
         </div>
