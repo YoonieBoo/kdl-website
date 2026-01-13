@@ -190,36 +190,42 @@ export default function WorkshopCategories() {
       track: "Process & Workflow",
       subtitle: "Practical roadmap design using lean + AI thinking.",
       durationLabel: "6 hours · Intermediate",
+      syllabusUrl: "/syllabus/lean-to-digital-transformation.pdf",
     },
     {
       title: "AI workflow for Business Process Optimization",
       track: "Process & Workflow",
       subtitle: "Design workflows that reduce bottlenecks and rework.",
       durationLabel: "6 hours · Intermediate",
+      syllabusUrl: "/syllabus/ai-workflow-process-optimization.pdf",
     },
     {
       title: "AI for Software Specification",
       track: "Process & Workflow",
       subtitle: "Applied AI for product and IT requirement clarity.",
       durationLabel: "6 hours · Intermediate",
+      syllabusUrl: "/syllabus/ai-for-software-specification.pdf",
     },
     {
       title: "AI for Data-Driven experience marketing",
       track: "Marketing & Experience",
       subtitle: "Turn customer journey data into practical improvements.",
       durationLabel: "3 hours · Beginner–Intermediate",
+      syllabusUrl: "/syllabus/ai-for-data-driven-experience-marketing.pdf",
     },
     {
       title: "AI in motion",
       track: "Marketing & Experience",
       subtitle: "Live AI demos across real workflows and templates.",
       durationLabel: "3 hours · Beginner–Intermediate",
+      syllabusUrl: "/syllabus/ai-in-motion.pdf",
     },
     {
       title: "AI for Digital Content Creators",
       track: "Marketing & Experience",
       subtitle: "Hands-on AI skills for content and campaign workflows.",
       durationLabel: "3 hours · Beginner–Intermediate",
+      syllabusUrl: "/syllabus/ai-for-digital-content-creators.pdf",
     },
   ];
 
@@ -361,14 +367,20 @@ export default function WorkshopCategories() {
       {/* MODAL */}
       {selectedWorkshop && (
         <div className="fixed inset-0 z-50">
-          {/* Backdrop (div so it doesn't interfere with scrolling) */}
-          <div
+          {/* ✅ Backdrop (click outside closes reliably) */}
+          <button
+            type="button"
+            aria-label="Close modal"
             className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm"
             onClick={handleClose}
           />
 
           {/* Modal positioning container */}
-          <div className="relative z-10 flex min-h-full items-end sm:items-center justify-center px-0 sm:px-6 pt-16 sm:py-10">
+          <div
+  className="relative z-10 flex min-h-full items-end sm:items-center justify-center px-0 sm:px-6 pt-16 sm:py-10"
+  onClick={handleClose}
+>
+
             {/* ✅ Scroll happens HERE on mobile */}
             <div
               className="
@@ -420,15 +432,21 @@ export default function WorkshopCategories() {
                   {selectedWorkshop.subtitle}
                 </p>
 
-                {/* 3h / 6h Toggle */}
-                <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8">
+                <div className="flex flex-wrap items-center gap-3 mb-8">
+                  {/* Duration buttons FIRST */}
                   {["3", "6"].map((d) => (
                     <button
                       key={d}
                       type="button"
                       onClick={() => setSelectedDuration(d)}
                       className={
-                        "px-4 py-2 rounded-full text-xs font-semibold border transition " +
+                        `
+                        inline-flex items-center justify-center
+                        h-10 px-5
+                        rounded-full
+                        text-sm font-semibold
+                        border transition
+                        ` +
                         (selectedDuration === d
                           ? "bg-[#0B1C33] text-white border-[#0B1C33]"
                           : "bg-white text-slate-700 border-slate-300 hover:bg-slate-100")
@@ -437,6 +455,27 @@ export default function WorkshopCategories() {
                       {d} hours
                     </button>
                   ))}
+
+                  {/* Download button SECOND */}
+                  {selectedWorkshop.syllabusUrl && (
+                    <a
+                      href={selectedWorkshop.syllabusUrl}
+                      download
+                      className="
+                        inline-flex items-center justify-center
+                        h-10 px-5
+                        rounded-full
+                        border border-slate-300
+                        bg-white
+                        text-sm font-semibold
+                        text-[#0B1C33]
+                        hover:bg-slate-100
+                        transition
+                      "
+                    >
+                      Download syllabus (PDF)
+                    </a>
+                  )}
                 </div>
 
                 {(() => {
